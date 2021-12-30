@@ -20,6 +20,7 @@
             if($pass_cap == 1 && $pass_small == 1 && $pass_num == 1 && $pass_char == 1){
 
                 if($_POST['new_pass'] == $_POST['confirm_pass'] ){
+                    
                     if($_POST['new_pass'] != $_POST['old_pass']){
                         $encripted_old_pass = md5($_POST['old_pass']);
 
