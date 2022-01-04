@@ -28,7 +28,14 @@
            $save_location = "../uploads/banner/". $image_new_name; 
            move_uploaded_file($_FILES['banner_image']['tmp_name'],$save_location);
 
-           echo "done";
+           $image_location = "uploads/banner/".$image_new_name; 
+
+           $update_query = "UPDATE banners SET image_location='$image_location' WHERE id=$id_from_bd";
+
+           mysqli_query($db_connect,$update_query);
+           
+           header('location: banner.php');
+
         } 
         else{
             echo "pai nai";

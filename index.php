@@ -94,23 +94,35 @@ https://templatemo.com/tm-545-finance-business
     </header>
 
     <!-- Page Content -->
+
     <!-- Banner Starts Here -->
     <div class="main-banner header-text" id="top">
         <div class="Modern-Slider">
+
+        <?php
+          require_once 'db.php';
+          $get_query = "SELECT * FROM banners WHERE active_status = 1";
+          $banner_from_db = mysqli_query($db_connect,$get_query);
+          foreach($banner_from_db as $banners):
+        ?>
           <!-- Item -->
           <div class="item item-1">
-            <div class="img-fill">
+            <div class="img-fill" style="background-image: url(<?=$banners['image_location']?>);">
                 <div class="text-content">
-                  <h6>we are ready to help you</h6>
-                  <h4>Financial Analysis<br>&amp; Consulting</h4>
-                  <p>This finance HTML template is 100% free of charge provided by TemplateMo for everyone. This is a multiple-page version with different HTML pages. <a href="one-page.html">One-page version</a> is available as of 2021 February.</p>
+  
+                  <h6><?=$banners['banner_sub_title']?></h6>
+                  <h4><?=$banners['banner_title']?></h4>
+                  <p><?=$banners['banner_detail']?></p>
                   <a href="contact.html" class="filled-button">contact us</a>
                 </div>
             </div>
           </div>
+          <?php
+            endforeach
+          ?>
           <!-- // Item -->
           <!-- Item -->
-          <div class="item item-2">
+          <!-- <div class="item item-2">
             <div class="img-fill">
                 <div class="text-content">
                   <h6>we are here to support you</h6>
@@ -119,10 +131,10 @@ https://templatemo.com/tm-545-finance-business
                   <a href="services.html" class="filled-button">our services</a>
                 </div>
             </div>
-          </div>
+          </div> -->
           <!-- // Item -->
           <!-- Item -->
-          <div class="item item-3">
+          <!-- <div class="item item-3">
             <div class="img-fill">
                 <div class="text-content">
                   <h6>we have a solid background</h6>
@@ -131,7 +143,7 @@ https://templatemo.com/tm-545-finance-business
                   <a href="about.html" class="filled-button">learn more</a>
                 </div>
             </div>
-          </div>
+          </div> -->
           <!-- // Item -->
         </div>
     </div>

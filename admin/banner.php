@@ -7,6 +7,9 @@
     if(!isset($_SESSION['user_status'])){
         header('location: ../login.php');
     }
+
+    $get_query = "SELECT * FROM banners";
+    $from_db = mysqli_query($db_connect,$get_query);    
 ?>
 
 <section>
@@ -47,7 +50,66 @@
                     <div class="card-header">
                         <h5 class="card-title text-capitalize">banner list</h5>
                     </div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <th>banner sub title</th>
+                                <th>banner title</th>
+                                <th>banner detail</th>
+                                <th>location</th>
+                                <th>active status</th>
+                                <th>action</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach($from_db as $banner):
+                                ?>
+                                    <tr>
+                                        <td><?=$banner['banner_sub_title']?></td>
+                                        <td><?=$banner['banner_title']?></td>
+                                        <td><?=$banner['banner_detail']?></td>
+                                        <td>
+                                            <img src="../<?=$banner['image_location']?>" alt="" style="width:100px;">
+                                        </td>
+                                        <td>
+                                            <?php
+                                                if($banner['active_status'] == 1):
+                                            ?>
+                                                <span class="badge badge-sm bg-success">active</span>
+                                            <?php
+                                                else:
+                                            ?>
+
+                                                <span class="badge badge-sm bg-warning">de-active</span>
+                                            <?php
+                                                endif
+                                            ?>
+                                        </td>
+
+                                        <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <?php
+                                                if($banner['active_status'] == 1):
+                                            ?>
+                                                <a href="banner_deactive.php?banner_id=<?=$banner['id']?>" class="btn btn-sm btn-warning">make de-acitve</a>
+                                            <?php
+                                                else:
+                                            ?>
+                                                <a href="banner_active.php?banner_id=<?=$banner['id']?>" class="btn btn-sm btn-primary">make acitve</a>
+                                            <?php
+                                                endif
+                                            ?>
+                                            <a href="banner_edit.php?banner_id=<?=$banner['id']?>" class="btn btn-sm btn-info">edit</a>
+                                            <a href="#" class="btn btn-sm btn-danger">delete</a>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    endforeach
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
