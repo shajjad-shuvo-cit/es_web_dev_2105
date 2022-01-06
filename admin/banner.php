@@ -53,6 +53,7 @@
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
+                                <th>sl</th>
                                 <th>banner sub title</th>
                                 <th>banner title</th>
                                 <th>banner detail</th>
@@ -62,9 +63,10 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach($from_db as $banner):
+                                    foreach($from_db as $key => $banner):
                                 ?>
                                     <tr>
+                                        <td><?=$key+1?></td>
                                         <td><?=$banner['banner_sub_title']?></td>
                                         <td><?=$banner['banner_title']?></td>
                                         <td><?=$banner['banner_detail']?></td>
@@ -100,7 +102,7 @@
                                                 endif
                                             ?>
                                             <a href="banner_edit.php?banner_id=<?=$banner['id']?>" class="btn btn-sm btn-info">edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">delete</a>
+                                            <a href="banner_delete.php?banner_id=<?=$banner['id']?>" class="btn btn-sm btn-danger">delete</a>
                                         </div>
                                         </td>
                                     </tr>

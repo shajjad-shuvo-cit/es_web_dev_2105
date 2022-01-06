@@ -28,6 +28,10 @@
           </li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="banner.php">banner</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="service_head.php">service heading</a></li>
+            <li><a class="dropdown-item" href="service_item.php">service items</a></li>
+            <li><hr class="dropdown-divider"></li>
           </ul>
         </li>
       </ul>
