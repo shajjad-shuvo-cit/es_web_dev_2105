@@ -1,7 +1,7 @@
 <?php
     require_once '../db.php';
 
-    print_r($_POST);
+    // print_r($_POST);
 
     $black_head = $_POST['black_head'];
     $green_head = $_POST['green_head'];

@@ -145,13 +145,15 @@ https://templatemo.com/tm-545-finance-business
         <div class="row">
           <div class="col-md-12">
             <?php
-              $get_service_head_query = "SELECT * FROM service_heads";
+              $get_service_head_query = "SELECT * FROM service_heads WHERE active_status = 1";
               $ser_head_from_db = mysqli_query($db_connect,$get_service_head_query);
-              $after_assoc = mysqli_fetch_assoc($ser_head_from_db);
+              // $after_assoc = mysqli_fetch_assoc($ser_head_from_db);
             ?>
             <div class="section-heading">
-              <h2><?=$after_assoc['black_head']?> <em><?=$after_assoc['green_head']?></em></h2>
-              <span><?=$after_assoc['service_sub_head']?></span>
+              <?php foreach($ser_head_from_db as $service_head): ?>
+              <h2><?=$service_head['black_head']?> <em><?=$service_head['green_head']?></em></h2>
+              <span><?=$service_head['service_sub_head']?></span>
+              <?php endforeach ?>
             </div>
           </div>
 
@@ -173,76 +175,70 @@ https://templatemo.com/tm-545-finance-business
           <?php
             endforeach
           ?>    
-          <!-- <div class="col-md-4">
-            <div class="service-item">
-              <img src="frontend/assets/images/service_02.jpg" alt="">
-              <div class="down-content">
-                <h4>Market Analysis</h4>
-                <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                <a href="" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-md-4">
-            <div class="service-item">
-              <img src="frontend/assets/images/service_03.jpg" alt="">
-              <div class="down-content">
-                <h4>Historical Data</h4>
-                <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                <a href="" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div> -->
-
         </div>
       </div>
     </div>
     <!-- service Ends Here -->
-
+    
+    
+    <!-- funfact starts Here -->
     <div class="fun-facts">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="left-content">
-              <span>Lorem ipsum dolor sit amet</span>
-              <h2>Our solutions for your <em>business growth</em></h2>
-              <p>Pellentesque ultrices at turpis in vestibulum. Aenean pretium elit nec congue elementum. Nulla luctus laoreet porta. Maecenas at nisi tempus, porta metus vitae, faucibus augue. 
-              <br><br>Fusce et venenatis ex. Quisque varius, velit quis dictum sagittis, odio velit molestie nunc, ut posuere ante tortor ut neque.</p>
-              <a href="" class="filled-button">Read More</a>
+              <?php 
+                $get_query = "SELECT * FROM funfacts";
+                $from_db = mysqli_query($db_connect,$get_query);
+                $after_asscoc_fun_heads = mysqli_fetch_assoc($from_db);
+              ?>
+              <span><?=$after_asscoc_fun_heads['sub_head']?></span>
+              <h2><?=$after_asscoc_fun_heads['white_head']?><em><?=$after_asscoc_fun_heads['green_head']?></em></h2>
+              <p><?=$after_asscoc_fun_heads['para_one']?> 
+              <br><br><?=$after_asscoc_fun_heads['para_two']?></p>
+              <a href="" class="filled-button">Read More</a>  
             </div>
           </div>
           <div class="col-md-6 align-self-center">
             <div class="row">
+              <?php
+                $get_fun_items_query = "SELECT * FROM funfact_items WHERE active_status = 1 LIMIT 4";
+                $from_db = mysqli_query($db_connect,$get_fun_items_query);
+                foreach($from_db as $fun_items):
+              ?>
               <div class="col-md-6">
                 <div class="count-area-content">
-                  <div class="count-digit">945</div>
+                  <!-- <div class="count-digit">1280</div> -->
+                  <div class="count-digit"><?=$fun_items['fun_num']?></div>
                   <div class="count-title">Work Hours</div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <?php endforeach ?>
+
+              <!-- <div class="col-md-6">
                 <div class="count-area-content">
                   <div class="count-digit">1280</div>
                   <div class="count-title">Great Reviews</div>
                 </div>
-              </div>
-              <div class="col-md-6">
+              </div> -->
+              <!-- <div class="col-md-6">
                 <div class="count-area-content">
                   <div class="count-digit">578</div>
                   <div class="count-title">Projects Done</div>
                 </div>
-              </div>
-              <div class="col-md-6">
+              </div> -->
+              <!-- <div class="col-md-6">
                 <div class="count-area-content">
                   <div class="count-digit">26</div>
                   <div class="count-title">Awards Won</div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- funfact Ends Here -->
 
     <div class="more-info">
       <div class="container">

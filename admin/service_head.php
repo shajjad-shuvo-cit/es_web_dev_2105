@@ -11,7 +11,6 @@
 
     $get_query = "SELECT * FROM service_heads";
     $from_db = mysqli_query($db_connect,$get_query);
-    $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
 <section>
@@ -54,14 +53,24 @@
                                 <th>black head</th>
                                 <th>green head</th>
                                 <th>sub head</th>
+                                <th>action</th>
                             </thead>
 
                             <tbody>
+                                <?php foreach($from_db as $service_head): ?>
                                 <tr>
-                                    <td><?=$after_assoc['black_head']?></td>
-                                    <td><?=$after_assoc['green_head']?></td>
-                                    <td><?=$after_assoc['service_sub_head']?></td>
+                                    <td><?=$service_head['black_head']?></td>
+                                    <td><?=$service_head['green_head']?></td>
+                                    <td><?=$service_head['service_sub_head']?></td>
+                                    <td>
+                                        <?php if($service_head['active_status'] == 2): ?>
+                                            <a href="service_head_active.php?id=<?=$service_head['id']?>" class="btn btn-sm btn-info">active</a>
+                                        <?php else: ?>
+                                            <a href="#" class="btn btn-sm btn-warning">de active</a>
+                                        <?php endif?>    
+                                    </td>
                                 </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
