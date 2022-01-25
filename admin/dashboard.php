@@ -8,8 +8,8 @@
         header('location: ../login.php');
     }
 
-    $get_query = "SELECT user_name,email,phone FROM users";
-    $from_db = mysqli_query($db_connect,$get_query);
+    // $get_query = "SELECT user_name,email,phone FROM users";
+    // $from_db = mysqli_query(db_connect(),$get_query);
 ?>
 
 
@@ -30,7 +30,7 @@
                             </thead>
                             <tbody>
                             <?php
-                                foreach($from_db as $user){     
+                                foreach(get_all('users') as $user){     
                             ?>
                                 <tr>
                                     <td><?=$user['user_name']?></td>

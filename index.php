@@ -102,7 +102,7 @@ https://templatemo.com/tm-545-finance-business
         <?php
           require_once 'db.php';
           $get_banner_query = "SELECT * FROM banners WHERE active_status = 1";
-          $banner_from_db = mysqli_query($db_connect,$get_banner_query);
+          $banner_from_db = mysqli_query(db_connect(),$get_banner_query);
           foreach($banner_from_db as $banners):
         ?>
           <!-- Item -->
@@ -146,8 +146,7 @@ https://templatemo.com/tm-545-finance-business
           <div class="col-md-12">
             <?php
               $get_service_head_query = "SELECT * FROM service_heads WHERE active_status = 1";
-              $ser_head_from_db = mysqli_query($db_connect,$get_service_head_query);
-              // $after_assoc = mysqli_fetch_assoc($ser_head_from_db);
+              $ser_head_from_db = mysqli_query(db_connect(),$get_service_head_query);
             ?>
             <div class="section-heading">
               <?php foreach($ser_head_from_db as $service_head): ?>
@@ -159,7 +158,7 @@ https://templatemo.com/tm-545-finance-business
 
           <?php
             $get_service_item_query = "SELECT * FROM service_items  WHERE active_status = 1 ORDER BY id DESC LIMIT 3";
-            $service_items_from_db = mysqli_query($db_connect,$get_service_item_query);
+            $service_items_from_db = mysqli_query(db_connect(),$get_service_item_query);
             foreach($service_items_from_db as $service_items):
           ?>
           <div class="col-md-4">
@@ -189,7 +188,7 @@ https://templatemo.com/tm-545-finance-business
             <div class="left-content">
               <?php 
                 $get_query = "SELECT * FROM funfacts";
-                $from_db = mysqli_query($db_connect,$get_query);
+                $from_db = mysqli_query(db_connect(),$get_query);
                 $after_asscoc_fun_heads = mysqli_fetch_assoc($from_db);
               ?>
               <span><?=$after_asscoc_fun_heads['sub_head']?></span>
@@ -203,36 +202,16 @@ https://templatemo.com/tm-545-finance-business
             <div class="row">
               <?php
                 $get_fun_items_query = "SELECT * FROM funfact_items WHERE active_status = 1 LIMIT 4";
-                $from_db = mysqli_query($db_connect,$get_fun_items_query);
+                $from_db = mysqli_query(db_connect(),$get_fun_items_query);
                 foreach($from_db as $fun_items):
               ?>
               <div class="col-md-6">
                 <div class="count-area-content">
-                  <!-- <div class="count-digit">1280</div> -->
                   <div class="count-digit"><?=$fun_items['fun_num']?></div>
                   <div class="count-title">Work Hours</div>
                 </div>
               </div>
               <?php endforeach ?>
-
-              <!-- <div class="col-md-6">
-                <div class="count-area-content">
-                  <div class="count-digit">1280</div>
-                  <div class="count-title">Great Reviews</div>
-                </div>
-              </div> -->
-              <!-- <div class="col-md-6">
-                <div class="count-area-content">
-                  <div class="count-digit">578</div>
-                  <div class="count-title">Projects Done</div>
-                </div>
-              </div> -->
-              <!-- <div class="col-md-6">
-                <div class="count-area-content">
-                  <div class="count-digit">26</div>
-                  <div class="count-title">Awards Won</div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>

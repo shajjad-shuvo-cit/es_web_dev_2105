@@ -15,31 +15,52 @@
     if(!$sub_head){
         $_SESSION['sub_err'] = "sub head required!";
         $flag = false;
+    }else{
+        $_SESSION['sub_head_done'] = $sub_head; 
     }
 
     if(!$white_head){
         $_SESSION['white_err'] = "white head required!";
         $flag = false;
-    }
-    if(!$green_head){
-        $_SESSION['white_err'] = "white head required!";
-        $flag = false;
-    }
-    if(!$para_one){
-        $_SESSION['white_err'] = "white head required!";
-        $flag = false;
-    }
-    if(!$para_two){
-        $_SESSION['white_err'] = "white head required!";
-        $flag = false;
+    }else{
+        $_SESSION['white_head_done'] = $white_head; 
     }
 
-    if($flag){
-        $_SESSION['sub_head_done'] = $sub_head; 
-        
+
+    if(!$green_head){
+        $_SESSION['green_err'] = "green head required!";
+        $flag = false;
+    }
+    else{
+        $_SESSION['green_head_done'] = $green_head;
+    }
+
+    if(!$para_one){
+        $_SESSION['para_one_err'] = "para one required!";
+        $flag = false;
+    }
+    else{
+        $_SESSION['para_one_done'] = $para_one;
+    }
+    if(!$para_two){
+        $_SESSION['para_two_err'] = "para two required!";
+        $flag = false;
+    }
+    else{
+        $_SESSION['para_two_done'] = $para_two;   
+    }
+
+    if($flag){ 
         // insert query;
         $insert_query = "INSERT INTO funfacts (sub_head,white_head,green_head,para_one,para_two) VALUES('$sub_head','$white_head','$green_head','$para_one','$para_two')";
-        mysqli_query($db_connect,$insert_query);
+        mysqli_query(db_connect(),$insert_query);
+
+        unset($_SESSION['sub_head_done']);
+        unset($_SESSION['white_head_done']);
+        unset($_SESSION['green_head_done']);
+        unset($_SESSION['para_one_done']);
+        unset($_SESSION['para_two_done']);
+
         header('location: funfact.php');
     }
     else{

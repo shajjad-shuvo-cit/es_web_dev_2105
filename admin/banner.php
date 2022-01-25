@@ -8,8 +8,8 @@
         header('location: ../login.php');
     }
 
-    $get_query = "SELECT * FROM banners";
-    $from_db = mysqli_query($db_connect,$get_query);    
+    // $get_query = "SELECT * FROM banners";
+    // $from_db = mysqli_query(db_connect(),$get_query);    
 ?>
 
 <section>
@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach($from_db as $key => $banner):
+                                    foreach(get_all('banners') as $key => $banner):
                                 ?>
                                     <tr>
                                         <td><?=$key+1?></td>
@@ -122,3 +122,28 @@
 <?php
     require_once '../footer.php';
 ?>
+
+
+
+<?php if(isset($_SESSION['banner_success'])):?>
+    <script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+    Toast.fire({
+    icon: 'success',
+    title: '<?=$_SESSION['banner_success']?>'
+    })
+</script>
+<?php endif ?>
+
+<?php unset($_SESSION['banner_success']) ?>

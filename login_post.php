@@ -9,7 +9,7 @@
     //checking query;
     $checking_query = "SELECT COUNT(*) AS total_users FROM users WHERE email='$email' AND password='$password'";
 
-    $from_db = mysqli_query($db_connect,$checking_query);
+    $from_db = mysqli_query(db_connect(),$checking_query);
 
     $after_assoc = mysqli_fetch_assoc($from_db);
 

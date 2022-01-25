@@ -26,13 +26,13 @@
 
                         $checking_query = "SELECT COUNT(*) AS total_user FROM users WHERE email='$login_email' AND password='$encripted_old_pass'";
 
-                        $db_result = mysqli_query($db_connect,$checking_query);
+                        $db_result = mysqli_query(db_connect(),$checking_query);
                         $after_assoc = mysqli_fetch_assoc($db_result);
 
                         if($after_assoc['total_user'] == 1){
                             $encripted_new_pass = md5($_POST['new_pass']);
                             $update_query = "UPDATE users SET password='$encripted_new_pass' WHERE email='$login_email'";
-                            mysqli_query($db_connect,$update_query);
+                            mysqli_query(db_connect(),$update_query);
                             $_SESSION['pass_change_ok'] =  "password changed successfully !";
                             header('location: change_password.php');
                         }

@@ -11,7 +11,7 @@
 
     $insert_query = "INSERT INTO guest_messages (guest_name,guest_email,guest_message) VALUES('$guest_name','$guest_email','$guest_message')";
 
-    mysqli_query($db_connect,$insert_query);
+    mysqli_query(db_connect(),$insert_query);
     
     header('location: ../index.php');
 

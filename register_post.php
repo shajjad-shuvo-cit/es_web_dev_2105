@@ -34,7 +34,7 @@
                 $insert_query = "INSERT INTO users (user_name,email,phone,password) VALUES('$user_name','$email','$phone','$encript_password')";
 
                 //insert data into database;
-                mysqli_query($db_connect,$insert_query);
+                mysqli_query(db_connect(),$insert_query);
                 $_SESSION['success_msg'] = "congrats ! you registered successfully ";
                 header('location: register.php');
             }

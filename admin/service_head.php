@@ -10,7 +10,7 @@
 
 
     $get_query = "SELECT * FROM service_heads";
-    $from_db = mysqli_query($db_connect,$get_query);
+    $from_db = mysqli_query(db_connect(),$get_query);
 ?>
 
 <section>
